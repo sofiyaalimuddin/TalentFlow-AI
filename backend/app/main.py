@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-from app.routers import auth
+from app.api import auth
+
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
@@ -31,7 +33,7 @@ def health():
         "status": "healthy"
     }
 
-from app.database import Base, engine
+from app.database.database import Base, engine
 from app import models
 
 Base.metadata.create_all(bind=engine)

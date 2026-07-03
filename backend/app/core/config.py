@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-SECRET_KEY = "change_this_to_a_long_random_secret_key"
+SECRET_KEY = "TalentFlowAI@2026$SecureJWT#FinalYearProject!987654"
 
 ALGORITHM = "HS256"
 

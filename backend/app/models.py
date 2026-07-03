@@ -2,7 +2,7 @@ import uuid
 
 #user model
 from sqlalchemy import Column, String, Text
-from app.database import Base
+from app.database.database import Base
 
 class User(Base):
     __tablename__ = "users"
