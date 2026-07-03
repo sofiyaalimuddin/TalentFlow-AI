@@ -1,16 +1,19 @@
 from fastapi import FastAPI
-from app.api import auth
-
-
 from fastapi.middleware.cors import CORSMiddleware
+from app.api import auth, dashboard, jobs
+from app.database.database import Base, engine
+from app import models
 
+# 1. Initialize Database Tables
+Base.metadata.create_all(bind=engine)
+
+# 2. Initialize FastAPI Application
 app = FastAPI(
     title="TalentFlow AI API",
     version="1.0.0"
 )
-app.include_router(auth.router)
 
-# Allow React frontend to access FastAPI
+# 3. Configure CORS Middleware (Allows React to connect)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -19,22 +22,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 4. Register API Routers
+app.include_router(auth.router)
+app.include_router(dashboard.router)
+app.include_router(jobs.router)
 
+# 5. Core Endpoints
 @app.get("/")
 def root():
     return {
         "message": "Welcome to TalentFlow AI API 🚀"
     }
 
-
 @app.get("/health")
 def health():
     return {
         "status": "healthy"
     }
-
-from app.database.database import Base, engine
-from app import models
-
-Base.metadata.create_all(bind=engine)
-

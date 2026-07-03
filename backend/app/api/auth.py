@@ -11,6 +11,8 @@ from app.crud import authenticate_user
 from app.core.security import create_access_token
 from fastapi import HTTPException
 
+from app.core.security import get_current_user
+
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 
@@ -58,3 +60,12 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         "access_token": access_token,
         "token_type": "bearer"
     }
+
+@router.get("/me")
+def get_me(current_user: User = Depends(get_current_user)):
+    return {
+        "id": current_user.id,
+        "full_name": current_user.full_name,
+        "email": current_user.email,
+    }
+

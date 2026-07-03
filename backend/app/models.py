@@ -23,18 +23,23 @@ class User(Base):
 class Job(Base):
     __tablename__ = "jobs"
 
-    id = Column(String, primary_key=True, index=True)
+    id = Column(
+        String,
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid.uuid4())
+    )
+
     title = Column(String, nullable=False)
     department = Column(String)
     description = Column(Text)
-
 #candidate model
 from sqlalchemy import Float
 
 class Candidate(Base):
     __tablename__ = "candidates"
 
-    id = Column(String, primary_key=True, index=True)
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
     full_name = Column(String, nullable=False)
     email = Column(String)
     phone = Column(String)
