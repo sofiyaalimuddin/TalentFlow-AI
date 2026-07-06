@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth, dashboard, jobs
+from app.api import auth, dashboard, jobs, candidates, upload, job_candidate
 from app.database.database import Base, engine
 from app import models
 
@@ -26,6 +26,9 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(dashboard.router)
 app.include_router(jobs.router)
+app.include_router(candidates.router)
+app.include_router(upload.router)
+app.include_router(job_candidate.router)
 
 # 5. Core Endpoints
 @app.get("/")

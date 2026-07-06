@@ -42,6 +42,7 @@ export default function Jobs() {
 const [job, setJob] = useState({
     title: "",
     department: "",
+    required_skills: "",
     description: "",
 });
 
@@ -68,6 +69,7 @@ async function handleSubmit() {
         setJob({
             title: "",
             department: "",
+            required_skills: "",
             description: "",
         });
 
@@ -101,6 +103,7 @@ async function handleDelete(id) {
     setJob({
         title: job.title,
         department: job.department,
+        required_skills: job.required_skills,
         description: job.description,
     });
 
@@ -142,6 +145,20 @@ async function handleDelete(id) {
     />
 
     <TextField
+        label="Required Skills"
+        placeholder="e.g. Python, FastAPI, PostgreSQL, React"
+        helperText="Separate skills with commas"
+        value={job.required_skills || ""} 
+        onChange={(e) =>
+            setJob({
+                ...job,
+                required_skills: e.target.value,
+            })
+        }
+    />
+
+
+    <TextField
         label="Description"
         multiline
         rows={4}
@@ -171,6 +188,7 @@ async function handleDelete(id) {
                         <TableRow>
                             <TableCell>Title</TableCell>
                             <TableCell>Department</TableCell>
+                            <TableCell>Required Skills</TableCell>
                             <TableCell>Description</TableCell>
                             <TableCell>Actions</TableCell>
                         </TableRow>
@@ -189,6 +207,10 @@ async function handleDelete(id) {
 
                                 <TableCell>
                                     {job.department}
+                                </TableCell>
+                                
+                                <TableCell>
+                                    {job.required_skills}
                                 </TableCell>
 
                                 <TableCell>

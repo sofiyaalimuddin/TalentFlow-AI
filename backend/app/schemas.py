@@ -15,6 +15,7 @@ class UserLogin(BaseModel):
 class JobCreate(BaseModel):
     title: str
     department: str
+    required_skills: str
     description: str
 
 # Job Response schema
@@ -31,6 +32,7 @@ class CandidateCreate(BaseModel):
     phone: str
     skills: str
     experience: str
+    resume_path: str | None = None
 
 # Candidate Response schema
 class CandidateResponse(CandidateCreate):
@@ -39,5 +41,15 @@ class CandidateResponse(CandidateCreate):
     match_score: float = 0
     status: str = "Pending"
 
+    class Config:
+        from_attributes = True
+        match_score: float = 0
+        matched_skills: str | None = None
+        missing_skills: str | None = None
+
+#Job Application Creation schema
+class JobApplicationCreate(BaseModel):
+    job_id: str
+    candidate_id: str
     class Config:
         from_attributes = True
