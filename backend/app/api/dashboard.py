@@ -1,16 +1,17 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from app.database.database import get_db
+from app import crud
 
 router = APIRouter(
     prefix="/dashboard",
-    tags=["Dashboard"]
+    tags=["Dashboard"],
 )
 
 
-@router.get("/stats")
-def get_dashboard_stats():
-    return {
-        "total_jobs": 0,
-        "total_candidates": 0,
-        "pending_onboarding": 0,
-        "top_candidate": "None"
-    }
+@router.get("/")
+def get_dashboard_stats(
+    db: Session = Depends(get_db),
+):
+    return crud.get_dashboard_stats(db)

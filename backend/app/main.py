@@ -1,6 +1,8 @@
+from dotenv import load_dotenv
+load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth, dashboard, jobs, candidates, upload, job_candidate
+from app.api import auth, dashboard, jobs, candidates, upload, job_candidate, onboarding, chatbot
 from app.database.database import Base, engine
 from app import models
 
@@ -29,6 +31,8 @@ app.include_router(jobs.router)
 app.include_router(candidates.router)
 app.include_router(upload.router)
 app.include_router(job_candidate.router)
+app.include_router(onboarding.router)
+app.include_router(chatbot.router)
 
 # 5. Core Endpoints
 @app.get("/")

@@ -48,8 +48,14 @@ class CandidateResponse(CandidateCreate):
         missing_skills: str | None = None
 
 #Job Application Creation schema
-class JobApplicationCreate(BaseModel):
+class JobApplicationResponse(BaseModel):
+    id: str
     job_id: str
     candidate_id: str
+    match_score: float
+    matched_skills: str | None
+    missing_skills: str | None
+    status: str
+
     class Config:
         from_attributes = True

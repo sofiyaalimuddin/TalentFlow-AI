@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import delete
 from sqlalchemy.orm import Session
 
 from app.database.database import get_db
@@ -63,11 +64,16 @@ def remove_job(
     db: Session = Depends(get_db),
 ):
     deleted = delete_job(db, job_id)
-
     if deleted is None:
         raise HTTPException(
             status_code=404,
             detail="Job not found",
+        )
+
+    if deleted is False:
+        raise HTTPException(
+            status_code=409,
+            detail="Cannot delete job because it have existing candidate applications.",
         )
 
     return {

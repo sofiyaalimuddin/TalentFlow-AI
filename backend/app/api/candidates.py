@@ -60,16 +60,12 @@ def edit_candidate(
 
     return updated
 
-
 @router.delete("/{candidate_id}")
 def remove_candidate(
     candidate_id: str,
     db: Session = Depends(get_db),
 ):
-    deleted = delete_candidate(
-        db,
-        candidate_id,
-    )
+    deleted = delete_candidate(db, candidate_id)
 
     if deleted is None:
         raise HTTPException(
@@ -77,7 +73,12 @@ def remove_candidate(
             detail="Candidate not found",
         )
 
+    if deleted is False:
+        raise HTTPException(
+            status_code=409,
+            detail="Cannot delete candidate because they have existing job applications.",
+        )
+
     return {
         "message": "Candidate deleted successfully"
     }
-
