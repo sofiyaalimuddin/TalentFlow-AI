@@ -18,7 +18,10 @@ app = FastAPI(
 # 3. Configure CORS Middleware (Allows React to connect)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://talentflow-ai-1.onrender.com",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
