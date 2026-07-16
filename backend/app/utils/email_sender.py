@@ -35,7 +35,7 @@ Your Offer Letter is attached to this email.
 
 If you have any questions regarding your onboarding process, documents, office timings, joining date, leave policy, or HR-related queries, you can chat with our AI Onboarding Assistant using the link below:
 
-http://localhost:5173/chatbot
+https://talentflow-ai-1.onrender.com/chatbot
 
 (After deployment, this link will be accessible from any device.)
 
