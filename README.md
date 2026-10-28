@@ -45,6 +45,46 @@ The application combines a React frontend with a Python FastAPI backend and Post
 * Automate welcome emails.
 * Reduce repetitive administrative work during employee onboarding.
 
+
+## Screenshots
+
+### 1. Login
+
+![TalentFlow AI Login](screenshots/Login.jpeg)
+
+### 2. Recruiter Dashboard
+
+![TalentFlow AI Dashboard](screenshots/Dashboard.png)
+
+### 3. Job Management
+
+![Job Management](screenshots/job-management.png)
+
+### 4. Candidate Management
+
+![Candidate Management](screenshots/candidate-management.png)
+
+### 5. Application Management
+
+![Application Management](screenshots/application.png)
+
+### 6. Chatbot
+
+![TalentFlow AI Chatbot](screenshots/chatbot.png)
+
+### 7. Employee Onboarding
+
+![Employee Onboarding](screenshots/onboarding.png)
+
+### 8. Offer Letter Generation
+
+![Generated Offer Letter PDF](screenshots/offer-pdf.jpeg)
+
+### 9. Automated Welcome Email
+
+![Automated Welcome Email](screenshots/auto-email.jpeg)
+
+
 ## Technology Stack
 
 | Category              | Technologies                         |
